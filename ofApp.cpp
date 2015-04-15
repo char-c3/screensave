@@ -1,6 +1,36 @@
 #include "ofApp.h"
 #include <algorithm>
 
+Circle::Circle() {
+	rad = 100;
+	x = ofRandom(rad, ofGetWidth() - rad);
+	y = ofRandom(rad, ofGetHeight() - rad);
+	cor = ofRandomuf();
+	math = 1;
+	Turn();
+	r = ofRandom(100, 200);
+	g = ofRandom(100, 200);
+	b = ofRandom(100, 200);
+	a = 200;
+}
+
+void Circle::Update() {
+	if (x + vx - rad < 0 || x + vx + rad > ofGetWidth()) vx = -vx;
+	if (y + vy - rad < 0 || y + vy + rad > ofGetHeight()) vy = -vy;
+	x += vx;
+	y += vy;
+}
+
+void Circle::Turn() {
+	vx = ofRandom(0, 10) * ofRandomf();
+	vy = ofRandom(0, 10) * ofRandomf();
+}
+
+void Circle::Turn(float x, float y) {
+	vx = x;
+	vy = y;
+}
+
 //--------------------------------------------------------------
 void ofApp::setup(){
 	ofEnableAlphaBlending();
@@ -77,24 +107,6 @@ void ofApp::update(){
 			collision(i, j);
 		}
 	}
-
-	/*for (Circle*& c1 : circles) {
-		for (Circle*& c2 : circles) {
-			if (c1 == c2) continue;
-			collision(&*c1, &*c2);
-		}
-	}*/
-
-	/*if (count++ % TURN_COUNT)
-		for (Circle*& c : circles)
-			c->Update();
-	else {
-		for (Circle*& c : circles){
-			c->Update();
-			c->Turn();
-		}
-	}*/
-
 }
 
 //--------------------------------------------------------------

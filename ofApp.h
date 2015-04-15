@@ -11,35 +11,10 @@ public:
 	int rad;
 	int r, g, b, a;
 
-	Circle() {
-		rad = 100;
-		x = ofRandom(rad, ofGetWidth() - rad);
-		y = ofRandom(rad, ofGetHeight() - rad);
-		cor = ofRandomuf();
-		math = 1;
-		Turn();
-		r = ofRandom(100, 200);
-		g = ofRandom(100, 200);
-		b = ofRandom(100, 200);
-		a = 200;
-	}
-
-	void Update() {
-		if (x + vx - rad < 0 || x + vx + rad > ofGetWidth()) vx = -vx;
-		if (y + vy - rad < 0 || y + vy + rad > ofGetHeight()) vy = -vy;
-		x += vx;
-		y += vy;
-	}
-
-	void Turn() {
-		vx = ofRandom(0, 10) * ofRandomf();
-		vy = ofRandom(0, 10) * ofRandomf();
-	}
-
-	void Turn(float x, float y) {
-		vx = x;
-		vy = y;
-	}
+	Circle();
+	void Update();
+	void Turn();
+	void Turn(float x, float y);
 };
 
 class ofApp : public ofBaseApp{
